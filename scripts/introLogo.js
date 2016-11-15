@@ -115,7 +115,7 @@ function initIntroLogo() {
             easing: "linear"
         });
 
-        transitionAudio('sounds/mainMenu.mp3', 3000, true);
+        transitionAudio('sounds/mainMenu.mp3', 1000, true);
         setTimeout(function() {
             activateView('mainMenu');
         }, 3000);
