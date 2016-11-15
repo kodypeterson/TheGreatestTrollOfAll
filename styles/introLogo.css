@@ -1,0 +1,51 @@
+#introLogo .overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#introLogo .content {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    font-family: 'Ravi Prakash', cursive;
+    color: white;
+}
+
+#introLogo .content .troll_intro {
+    font-size: 40px;
+    width: 384px;
+    height: 308px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -184px;
+    margin-top: -150px;
+}
+
+#introLogo .content .troll_intro small {
+    font-size: 20px;
+}
+
+#introLogo .content .troll_intro img,
+#introLogo .content .troll_intro .text,
+#introLogo .content .troll_intro button,
+#introLogo .content #introText {
+    display: none;
+}
+
+#introLogo .content .troll_intro button {
+    padding: 10px;
+    font-weight: bold;
+}
+
+#introLogo .content #introText {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}

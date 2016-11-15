@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Ravi+Prakash');
+
+body {
+    background-image: url("../images/app_bg.png");
+}
+
+.gameView {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gameView.active {
+    z-index: 9999;
+}
