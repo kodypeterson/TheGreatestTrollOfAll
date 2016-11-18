@@ -1,8 +1,9 @@
 function initIntroLogo() {
-
+    $("#introLogo .overlay").css("display", "block");
     var increaseBy = 800;
     playAudio("sounds/intro.mp3", true);
 
+    $('#mainMenu .globe .contents .map .spot').css('display', 'none');
 
     setTimeout(function () {
         $("#introLogo .content .troll_intro img").fadeIn({
@@ -21,7 +22,6 @@ function initIntroLogo() {
     }, 500);
 
     $("#introLogo .content .troll_intro button").click(startGame);
-
     function startGame() {
         $("#introLogo .content .troll_intro").fadeOut({
             duration: 5000
@@ -115,8 +115,12 @@ function initIntroLogo() {
             easing: "linear"
         });
 
-        transitionAudio('sounds/mainMenu.mp3', 1000, true);
+        lowerVolume(0.4, 600);
+
         setTimeout(function() {
+            $('#mainMenu .globe .contents .map .spot').each(function(idx, spot) {
+                $(spot).delay(idx * 500).toggle("bounce", { times: 3 }, "slow" );
+            });
             activateView('mainMenu');
         }, 3000);
     }

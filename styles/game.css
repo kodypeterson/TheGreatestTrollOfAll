@@ -1,0 +1,18 @@
+#game {
+    display: none;
+    z-index: 2;
+}
+
+#game #gameBackground {
+    width: 100%;
+
+    background: no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}

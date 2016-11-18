@@ -4,6 +4,12 @@ body {
     background-image: url("../images/app_bg.png");
 }
 
+html, body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
 .gameView {
     position: absolute;
     top: 0;
@@ -17,4 +23,8 @@ body {
 
 .gameView.active {
     z-index: 9999;
+}
+
+#gameReady {
+    display: none;
 }

@@ -2,68 +2,64 @@ var applicationLoading = true;
 var audioElement = document.createElement('audio');
 var maxVolume = 1;
 
-initGameApplication();
+var trolls = [
+    {
+        x: 477,
+        y: 448,
+        name: "Mr. Troll Troll",
+        location: "Orlando, FL, USA",
+        difficulty: "easy",
+        skipCost: 4
+    },
+    {
+        x: 255,
+        y: 356,
+        name: "Another Troll",
+        location: "California, CA, USA",
+        difficulty: "easy",
+        skipCost: 4
+    }
+];
+
+$(document).ready(function() {
+    initGameApplication();
+});
+
 
 /**
  * Initializes the game application (can also be used as a hard refresh)
  * @return void
  */
 function initGameApplication() {
-    var views = ['introLogo', 'mainMenu', 'game'];
-    var promises = [];
+    var views = ['loading', 'introLogo', 'mainMenu', 'game'];
+    var count = 0;
 
     applicationLoading = true;
     // Get the views
 
     views.forEach(function(view) {
-        var promise = $.ajax({
-            method: 'get',
-            url: 'views/' + view + '.html'
-        });
-        promises.push(promise);
-    });
+        $.ajax('views/' + view + '.html').done(function(data, textStatus, jqXHR) {
+            $('#' + view).html(data);
+            count ++;
 
-    $.when(promises).then(function(results) {
-        views.forEach(function(view, idx) {
-            $('#' + view).html(results[idx].responseText);
-        });
+            if (count === views.length) {
+                var timer = setInterval(function(){
+                    if ($("#gameReady").length) {
+                        clearInterval(timer);
 
-        initIntroLogo();
-        initMainMenu();
+                        initGame();
+                        initMainMenu();
+                        //initIntroLogo();
+                    }
+                }, 200);
+            }
+        });
     });
 }
 
 function activateView(view) {
     $('.gameView.active').removeClass('active');
     $('.gameView#' + view).addClass('active');
-}
-
-function transitionAudio(src, speed, repeat) {
-    if (!speed) {
-        speed = 600;
-    }
-
-    var newAudioElement = document.createElement('audio');
-    newAudioElement.setAttribute('src', src);
-    newAudioElement.volume = 0;
-    newAudioElement.loop = repeat || false;
-    newAudioElement.play();
-    var volume = 0;
-    var int = setInterval(function() {
-        volume += 0.1 * maxVolume;
-        if (volume > 1) {
-            volume = 1;
-        }
-        newAudioElement.volume = volume;
-        if (volume >= maxVolume) {
-            clearInterval(int);
-            $(audioElement).remove();
-            setTimeout(function() {
-                audioElement = newAudioElement;
-            }, 0);
-        }
-    }, speed);
-    stopAudio(true, 600);
 }
 
 function playAudio(src, repeat) {
@@ -74,23 +70,38 @@ function playAudio(src, repeat) {
     audioElement.play();
 }
 
-function stopAudio(fade, speed) {
+function lowerVolume(requestedVolume, speed, cb) {
+    var volume = audioElement.volume;
     if (!speed) {
         speed = 300;
     }
-    if (fade) {
-        var volume = 1;
-        var int = setInterval(function() {
+    var int = setInterval(function() {
+        if (audioElement.volume > requestedVolume) {
             volume -= 0.1;
-            if (volume < 0) {
-                volume = 0;
+        } else {
+            volume += 0.1;
+        }
+        if (volume < 0) {
+            volume = 0;
+        }
+        if (volume > 1) {
+            volume = 1;
+        }
+        audioElement.volume = volume;
+        if (volume <= requestedVolume) {
+            clearInterval(int);
+            if (cb) {
+                cb();
             }
-            audioElement.volume = volume;
-            if (volume === 0) {
-                clearInterval(int);
-                audioElement.pause();
-            }
-        }, speed);
+        }
+    }, speed);
+}
+
+function stopAudio(fade, speed) {
+    if (fade) {
+        lowerVolume(0, speed, function() {
+            audioElement.pause();
+        });
     } else {
         audioElement.pause();
     }
