@@ -113,7 +113,10 @@ function initMainMenu() {
     function goToBattle() {
         var troll = $(this).data("trollInfo");
 
-        $("#loading #travelCity").text(troll.location);
+        $(".hud .status").text("Traveling To " + troll.location + "...");
+        $(".hud .item.trollInfo #trollName").text(troll.name);
+        $(".hud .item.trollInfo img").attr("src", troll.img);
+        $(".hud .item.trollInfo").show();
         $("#mainMenu").fadeOut(400, function() {
             resetGlobeMenu();
         });

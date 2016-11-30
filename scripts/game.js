@@ -2,6 +2,7 @@ function initGame() {
     $("#game #back").click(goBack);
 
     function goBack() {
+        $(".hud .status").text("Select A Troll To Battle!");
         $("#mainMenu").fadeIn();
         $("#game").fadeOut();
     }
@@ -66,11 +67,26 @@ function gameStart(troll) {
                     $("#game #gameBackground").attr("src", "");
                     // Image is loaded
                     $("#loading .content").fadeOut();
-                    $("#game").fadeIn();
+                    $("#game").fadeIn(doAnimations);
+                    $(".hud .status").text("BATTLE!!!");
                 }, timeLeft);
             });
             $("#game #gameBackground").attr("src", response.sizes.size[response.sizes.size.length - 3].source);
             $("#game #gameBackground").css("background-image", "url(" + response.sizes.size[response.sizes.size.length - 3].source + ")");
+
+            $("#game #troll").attr("src", troll.img);
         });
     });
+
+    function doAnimations() {
+        $("#game #troll").animate({
+            bottom: "+=900"
+        }, function() {
+            $("#game #troll").animate({
+                bottom: "-=200"
+            }, function() {
+                console.log('done');
+            })
+        })
+    }
 }

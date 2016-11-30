@@ -18,6 +18,22 @@ var trolls = [
         location: "California, CA, USA",
         difficulty: "easy",
         skipCost: 4
+    },
+    {
+        x: 1024,
+        y: 529,
+        name: "Another Other Troll",
+        location: "Some Other Place",
+        difficulty: "hard",
+        skipCost: 20
+    },
+    {
+        x: 1512,
+        y: 200,
+        name: "Another Other Troll",
+        location: "Some Other Place",
+        difficulty: "hard",
+        skipCost: 20
     }
 ];
 
@@ -31,7 +47,7 @@ $(document).ready(function() {
  * @return void
  */
 function initGameApplication() {
-    var views = ['loading', 'introLogo', 'mainMenu', 'game'];
+    var views = ['loading', 'introLogo', 'mainMenu', 'game', 'hud'];
     var count = 0;
 
     applicationLoading = true;

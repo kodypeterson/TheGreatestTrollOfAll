@@ -16,3 +16,10 @@
     left: 0;
     top: 0;
 }
+
+#game #troll {
+    height: 350px;
+    position: absolute;
+    bottom: -350px;
+    left: 50%;
+}

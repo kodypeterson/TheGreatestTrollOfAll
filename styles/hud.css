@@ -1,0 +1,51 @@
+.hud {
+    width: 100%;
+    margin: 10px;
+    position: absolute;
+    z-index: 99999;
+}
+
+.hud .item {
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #577;
+    background-color: #222;
+    padding: 10px;
+    opacity: .85;
+    transition: .3s;
+    width: 150px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+.hud .item.right {
+    float: right;
+    margin-right: 20px;
+}
+
+.hud .item.center {
+    position: absolute;
+    left: 50%;
+    margin-left: -250px;
+    width: 500px;
+}
+
+.hud .item .hp .fa-heart {
+    color: red;
+}
+
+.hud .item .gp .fa-diamond {
+    color: cyan;
+}
+
+.hud .item.trollInfo {
+    display: none;
+    height: auto;
+    text-align: center;
+}
+
+.hud .item.trollInfo img {
+    height: 40px;
+}

@@ -1,4 +1,6 @@
 function initIntroLogo() {
+    activateView('introLogo');
+    $("#hud").hide();
     $("#introLogo .overlay").css("display", "block");
     var increaseBy = 800;
     playAudio("sounds/intro.mp3", true);
@@ -121,6 +123,7 @@ function initIntroLogo() {
             $('#mainMenu .globe .contents .map .spot').each(function(idx, spot) {
                 $(spot).delay(idx * 500).toggle("bounce", { times: 3 }, "slow" );
             });
+            $("#hud").fadeIn();
             activateView('mainMenu');
         }, 3000);
     }
