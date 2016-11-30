@@ -124,3 +124,8 @@ function initMainMenu() {
         gameStart(troll);
     }
 }
+
+function playMainMenuMusic() {
+    maxVolume = 0.5;
+    playAudio('sounds/mainMenu.mp3', true);
+}

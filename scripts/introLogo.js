@@ -90,7 +90,7 @@ function initIntroLogo() {
         $("#mainMenu .globe img").animate({
             marginLeft: "-=400"
         }, {
-            duration: 25000,
+            duration: 35000,
             easing: "linear"
         });
     }
@@ -109,8 +109,6 @@ function initIntroLogo() {
             easing: "linear"
         });
 
-
-
         $("#mainMenu .globe img").animate({
             marginLeft: "+=400"
         }, {
@@ -118,7 +116,9 @@ function initIntroLogo() {
             easing: "linear"
         });
 
-        lowerVolume(0, 2800);
+        lowerVolume(0, 2500, function() {
+            playMainMenuMusic();
+        });
 
         setTimeout(function() {
             $('#mainMenu .globe .contents .map .spot').each(function(idx, spot) {
@@ -126,6 +126,7 @@ function initIntroLogo() {
             });
             $("#hud").fadeIn();
             activateView('mainMenu');
+            localStorage.setItem('seenIntro', 'true');
         }, 3000);
     }
 }

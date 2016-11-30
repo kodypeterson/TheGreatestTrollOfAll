@@ -41,7 +41,6 @@ $(document).ready(function() {
     initGameApplication();
 });
 
-
 /**
  * Initializes the game application (can also be used as a hard refresh)
  * @return void
@@ -65,7 +64,11 @@ function initGameApplication() {
 
                         initGame();
                         initMainMenu();
-                        initIntroLogo();
+                        if (localStorage.getItem('seenIntro') !== 'true') {
+                            initIntroLogo();
+                        } else {
+                            playMainMenuMusic();
+                        }
                     }
                 }, 200);
             }
