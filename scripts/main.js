@@ -65,7 +65,7 @@ function initGameApplication() {
 
                         initGame();
                         initMainMenu();
-                        //initIntroLogo();
+                        initIntroLogo();
                     }
                 }, 200);
             }
@@ -78,12 +78,15 @@ function activateView(view) {
     $('.gameView#' + view).addClass('active');
 }
 
-function playAudio(src, repeat) {
-    audioElement.setAttribute('src', src);
-    audioElement.currentTime = 0;
-    audioElement.volume = maxVolume;
-    audioElement.loop = repeat || false;
-    audioElement.play();
+function playAudio(src, repeat, ae) {
+    ae = ae || audioElement;
+    ae.setAttribute('src', src);
+    ae.currentTime = 0;
+    ae.volume = maxVolume;
+    ae.loop = repeat || false;
+    ae.play();
+
+    return ae;
 }
 
 function lowerVolume(requestedVolume, speed, cb) {

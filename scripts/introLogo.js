@@ -16,9 +16,7 @@ function initIntroLogo() {
                 duration: 6000
             });
             setTimeout(function () {
-                $("#introLogo .content .troll_intro button").fadeIn({
-                    duration: 2000
-                });
+                startGame();
             }, 3000);
         }, 6000);
     }, 500);
@@ -35,42 +33,45 @@ function initIntroLogo() {
     }
 
     function playIntroScene() {
+        var morganAudioElement = document.createElement('audio');
         var introText = $("#introText");
         var script = [
             "All around the globe trolls are hiding...",
-            "quietly waiting for the people of the world...",
-            "to cross their bridge.",
-            "This is the story of one player...",
+            "quietly waiting for the people of the world to cross their bridge.",
+            "This is the story of an audacious player...",
             "out to defeat all of the trolls...",
-            "and take back the bridges once and for all!"
+            "and take back the bridges once and for all!",
+            "It's your duty to succeed!",
+            "Go forth,",
+            "CONQUER!!!"
         ];
         var currentIdx = 0;
 
         enlargeGlobe();
-
-        var int = setInterval(showText, 4000);
         showText();
+        lowerVolume(0.5, 600);
 
         function showText() {
             introText.text(script[currentIdx]);
-            introText.fadeIn({
-                duration: 500
+            introText.fadeIn(500, function() {
+                playAudio("sounds/morgan/morgan_0" + (currentIdx + 1) + ".mp3", false, morganAudioElement);
+                morganAudioElement.onended = function() {
+                    setTimeout(function () {
+                        introText.fadeOut(500, function () {
+                            currentIdx++;
+                            if (currentIdx === script.length) {
+                                $("#introLogo .content .troll_intro").fadeIn({
+                                    duration: 5000
+                                });
+
+                                setTimeout(transitionToMenu, 8000);
+                            } else {
+                                showText();
+                            }
+                        });
+                    }, 500);
+                };
             });
-            setTimeout(function() {
-                introText.fadeOut({
-                    duration: 500
-                });
-            }, 3000);
-            currentIdx++;
-            if (currentIdx === script.length) {
-                clearInterval(int);
-
-                $("#introLogo .content .troll_intro").fadeIn({
-                    duration: 5000
-                });
-
-                setTimeout(transitionToMenu, 8000);
-            }
         }
     }
 
@@ -82,7 +83,7 @@ function initIntroLogo() {
             marginLeft: "-=" + (increaseBy/2),
             marginTop: "-=" + (increaseBy/2)
         }, {
-            duration: 25000,
+            duration: 35000,
             easing: "linear"
         });
 
@@ -117,7 +118,7 @@ function initIntroLogo() {
             easing: "linear"
         });
 
-        lowerVolume(0.4, 600);
+        lowerVolume(0, 2800);
 
         setTimeout(function() {
             $('#mainMenu .globe .contents .map .spot').each(function(idx, spot) {
