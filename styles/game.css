@@ -17,9 +17,44 @@
     top: 0;
 }
 
-#game #troll {
+#game #troll,
+#game #player,
+#game #player_run {
     height: 350px;
     position: absolute;
     bottom: -350px;
+    right: -100px;
+}
+
+#game #player,
+#game #player_run {
+    bottom: 350px;
+    left: -100px;
+}
+
+#game #player {
+    display: none;
+}
+
+#game #player_run {
+    left: -450px;
+}
+
+#game .question {
+    position: absolute;
+    z-index: 99999;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #577;
+    background-color: #222;
+    opacity: .85;
+    padding: 10px;
+    transition: .3s;
+    width: 500px;
+    height: 300px;
+    line-height: 20px;
+
     left: 50%;
+    top: 70px;
+    margin-left: -240px;
 }

@@ -23,7 +23,7 @@ function initMainMenu() {
         div.css('top', (troll.y * heightScale) - 25);
         div.data('resetX', (troll.x * widthScale) - 12.5);
         div.data('resetY', (troll.y * heightScale) - 25);
-        troll.img = "images/trolls/" + (Math.floor(Math.random() * 3) + 1) + ".png";
+        troll.img = "images/trolls/" + (Math.floor(Math.random() * 4) + 1) + ".gif?c=3";
         div.data('trollInfo', troll);
         div.click(markerClick);
         $('#mainMenu .globe .contents .map').prepend(div);

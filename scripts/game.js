@@ -3,6 +3,7 @@ function initGame() {
 
     function goBack() {
         $(".hud .status").text("Select A Troll To Battle!");
+        $(".hud .item.trollInfo").hide();
         $("#mainMenu").fadeIn();
         $("#game").fadeOut();
     }
@@ -13,10 +14,11 @@ function gameStart(troll) {
 
     // Get the trivia question
     $.ajax({
-        url: "http://crossorigin.me/https://opentdb.com/api.php?amount=1",
-        method: "get"
+        url: "http://cors-anywhere.herokuapp.com/https://opentdb.com/api.php?amount=1",
+        method: "GET",
+        crossOrigin: true
     }).done(function(response) {
-        console.log(response);
+        console.log(response)
     });
 
     // Get the background photo
@@ -79,6 +81,8 @@ function gameStart(troll) {
     });
 
     function doAnimations() {
+        // Troll
+        $("#game #troll").css("bottom", "-350px");
         $("#game #troll").animate({
             bottom: "+=900"
         }, function() {
@@ -87,6 +91,21 @@ function gameStart(troll) {
             }, function() {
                 console.log('done');
             })
-        })
+        });
+
+
+        $("#game #player_run").css("left", "-450px");
+        setTimeout(function() {
+            $("#game #player_run").animate({
+                left: "+=350"
+            }, function() {
+                $("#game #player_run").hide();
+                $("#game #player").show();
+            })
+        }, 150);
+
+
+        // player
+
     }
 }
