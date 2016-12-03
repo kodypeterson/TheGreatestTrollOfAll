@@ -123,8 +123,10 @@ function initMainMenu() {
             resetGlobeMenu();
         });
         $("#loading .content").fadeIn();
-        lowerVolume(0);
-        gameStart(troll);
+        lowerVolume(0, 300, function() {
+            gameStart(troll);
+        });
+
     }
 }
 
