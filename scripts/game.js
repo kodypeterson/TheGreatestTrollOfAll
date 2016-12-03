@@ -89,8 +89,8 @@ function gameStart(troll) {
         $("#game #player_dizzy").show();
         $("#game #player").hide();
 
-        if (parseInt($(".hud #hp").text()) !== 0 && parseInt($(".hud #hp").text()) !== 0) {
-            $(".hud #gp").text(parseInt($(".hud #hp").text()) - 10);
+        if (parseInt($(".hud #gp").text()) !== 0 && parseInt($(".hud #hp").text()) !== 0) {
+            $(".hud #gp").text(parseInt($(".hud #gp").text()) - 10);
         }
 
         setTimeout(function() {

@@ -6,32 +6,32 @@ var trolls = [
     {
         x: 477,
         y: 448,
-        name: "Mr. Troll Troll",
-        location: "Orlando, FL, USA",
+        name: "Zelahzahn",
+        location: "Orlando, FL",
         difficulty: "easy",
         skipCost: 4
     },
     {
         x: 255,
         y: 356,
-        name: "Another Troll",
-        location: "California, CA, USA",
+        name: "Rusnanunjo",
+        location: "Sacramento, CA",
         difficulty: "easy",
         skipCost: 4
     },
     {
         x: 1024,
         y: 529,
-        name: "Another Other Troll",
-        location: "Some Other Place",
+        name: "Juna'Ahjen",
+        location: "Chad, Africa",
         difficulty: "hard",
         skipCost: 20
     },
     {
         x: 1512,
         y: 200,
-        name: "Another Other Troll",
-        location: "Some Other Place",
+        name: "Jumauzlaji",
+        location: "Russia",
         difficulty: "hard",
         skipCost: 20
     }
