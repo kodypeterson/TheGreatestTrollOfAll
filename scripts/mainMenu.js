@@ -129,6 +129,6 @@ function initMainMenu() {
 }
 
 function playMainMenuMusic() {
-    maxVolume = 0.5;
+    maxVolume = 0.4;
     playAudio('sounds/mainMenu.mp3', true);
 }
