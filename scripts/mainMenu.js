@@ -15,7 +15,9 @@ function initMainMenu() {
 
     trolls.reverse();
     trolls.forEach(function(troll, idx) {
+        troll.idx = idx;
         var div = $('<div>');
+        div.attr('id', 'troll' + idx);
         div.addClass('spot');
         div.data('origX', troll.x);
         div.data('origY', troll.y);
@@ -23,7 +25,7 @@ function initMainMenu() {
         div.css('top', (troll.y * heightScale) - 25);
         div.data('resetX', (troll.x * widthScale) - 12.5);
         div.data('resetY', (troll.y * heightScale) - 25);
-        troll.img = "images/trolls/" + (Math.floor(Math.random() * 4) + 1) + ".gif?c=3";
+        troll.img = "images/trolls/" + (Math.floor(Math.random() * 4) + 1) + ".gif?c=4";
         div.data('trollInfo', troll);
         div.click(markerClick);
         $('#mainMenu .globe .contents .map').prepend(div);
@@ -45,7 +47,7 @@ function initMainMenu() {
     $("#mainMenu .globe #trollInfo #tryLater").click(resetGlobeMenu);
 
     function markerClick() {
-        if (!isZoomedIn) {
+        if (!isZoomedIn && !$(this).hasClass('defeated')) {
             isZoomedIn = true;
             allowGlobeDrag = false;
             var marker = $(this);
@@ -121,6 +123,7 @@ function initMainMenu() {
             resetGlobeMenu();
         });
         $("#loading .content").fadeIn();
+        lowerVolume(0);
         gameStart(troll);
     }
 }
