@@ -95,18 +95,21 @@ function gameStart(troll) {
 
         setTimeout(function() {
             if (parseInt($(".hud #hp").text()) === 0) {
-                $("#game").fadeOut(4000);
-                $(".hud").fadeOut(4000);
+                lowerVolume(0, 300, function() {
+                    $("#game").fadeOut(4000);
+                    $(".hud").fadeOut(4000);
 
-                setTimeout(function() {
-                    $(".spot.defeated").removeClass("defeated");
-                    $(".hud .item.trollInfo").hide();
-                    $(".hud #hp").text('100');
-                    $(".hud #gp").text('0');
-                    $(".hud .status").text("Select A Troll To Battle!");
-                    $("#mainMenu").fadeIn();
-                    $(".hud").fadeIn();
-                }, 7000);
+                    setTimeout(function () {
+                        $(".spot.defeated").removeClass("defeated");
+                        $(".hud .item.trollInfo").hide();
+                        $(".hud #hp").text('100');
+                        $(".hud #gp").text('0');
+                        $(".hud .status").text("Select A Troll To Battle!");
+                        $("#mainMenu").fadeIn();
+                        $(".hud").fadeIn();
+                        playMainMenuMusic();
+                    }, 7000);
+                });
             } else {
                 $("#game #player").show();
                 $("#game #player_dizzy").hide();
