@@ -116,7 +116,7 @@ function initIntroLogo() {
             easing: "linear"
         });
 
-        lowerVolume(0, 2500, function() {
+        lowerVolume(0, 2000, function() {
             playMainMenuMusic();
         });
 
